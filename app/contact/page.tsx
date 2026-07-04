@@ -1,7 +1,12 @@
+import Image from "next/image";
+
 export default function ContactPage() {
   const wechatId = process.env.WECHAT_ID || "your_wechat_id";
   const xianshangUrl = process.env.XIANSHANG_URL || "#";
   const xhsUrl = process.env.XHS_URL || "#";
+
+  // 二维码图片文件名(支持 png / jpg,优先 png)
+  const qrSrc = "/wechat-qr.png";
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-20">
@@ -18,15 +23,16 @@ export default function ContactPage() {
         </p>
 
         <div className="my-10">
-          <div className="inline-block p-4 rounded-xl bg-white/5 border border-white/10">
-            {/* 微信二维码图片占位 */}
-            <div className="w-48 h-48 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-lg flex items-center justify-center text-gray-500 text-sm">
-              微信二维码
-              <br />
-              /public/wechat-qr.png
-            </div>
-            <p className="mt-3 text-sm text-gray-400">
-              微信号:<span className="font-mono text-white">{wechatId}</span>
+          <div className="inline-block p-4 rounded-xl bg-white border border-white/10">
+            <Image
+              src={qrSrc}
+              alt="微信二维码"
+              width={192}
+              height={192}
+              className="rounded-lg"
+            />
+            <p className="mt-3 text-sm text-gray-700">
+              微信号:<span className="font-mono text-black">{wechatId}</span>
             </p>
           </div>
         </div>
